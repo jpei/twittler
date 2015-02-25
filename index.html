@@ -10,20 +10,45 @@
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
+        
+        // Populates all users
+        var populateAll = function() {
+          $body.html('');
+          clearInterval();
+          var $title = $("<h1>All Users' Tweets</h1>");
+          $title.prependTo($body);
+          var index = 0;
+          setInterval(function() {
+            while(index < streams.home.length){
+              var tweet = streams.home[index];
+              var $tweet = $('<div></div>');
+              $tweet.text(new Date().toUTCString() + ": " + '@' + tweet.user + ': ' + tweet.message);
+              $tweet.insertAfter($title);
+              index++;
+            }
+          },2000);
+        };
 
-        // Rewrite index to be ascending as opposed to descending (requires more calls to streams.home)
-        // However, this will let us run setInterval appropriately
-        var index = 0;
-        setInterval(function() {
-          while(index < streams.home.length){
-            var tweet = streams.home[index];
-            var $tweet = $('<div></div>');
-            $tweet.text(new Date().toUTCString() + ": " + '@' + tweet.user + ': ' + tweet.message);
-            $tweet.prependTo($body);
-            index++;
-          }
-        },1000);
+        // Populates one user
+        var populateOne = function(user) {
+          $body.html('');
+          clearInterval();
+          var $title = $("<h1>" + user + "'s Tweets</h1>");
+          $title.prependTo($body);
+          var index = 0;
+          setInterval(function() {
+            while(index < streams.users[user].length){
+              var tweet = streams.users[user][index];
+              var $tweet = $('<div></div>');
+              $tweet.text(new Date().toUTCString() + ": " + '@' + tweet.user + ': ' + tweet.message);
+              $tweet.insertAfter($title);
+              index++;
+            }
+          },2000);
+        };
+
+        populateAll();
+        populateOne('mracus');
 
       });
 
