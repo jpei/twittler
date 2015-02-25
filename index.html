@@ -11,14 +11,18 @@
         var $body = $('body');
         $body.html('');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+        // Rewrite index to be ascending as opposed to descending (requires more calls to streams.home)
+        // However, this will let us run setInterval appropriately
+        var index = 0;
+        setInterval(function() {
+          while(index < streams.home.length){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.text('@' + tweet.user + ': ' + tweet.message);
+            $tweet.prependTo($body);
+            index++;
+          }
+        },1000);
 
       });
 
