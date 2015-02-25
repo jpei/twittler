@@ -18,13 +18,13 @@
 
           var $title = $("<h1>All Users' Tweets</h1>");
           $title.prependTo($body);
-          
+
           var index = 0;
           setInterval(function() {
             while(index < streams.home.length){
               var tweet = streams.home[index];
               var $tweet = $('<div></div>');
-              $tweet.text(new Date().toUTCString() + ": " + '@' + tweet.user + ': ' + tweet.message);
+              $tweet.html(new Date().toUTCString() + ": <span data-user=" + tweet.user + ">@" + tweet.user + "</span>: " + tweet.message);
               $tweet.insertAfter($title);
               index++;
             }
@@ -46,7 +46,7 @@
             while(index < streams.users[user].length){
               var tweet = streams.users[user][index];
               var $tweet = $('<div></div>');
-              $tweet.text(new Date().toUTCString() + ": " + '@' + tweet.user + ': ' + tweet.message);
+              $tweet.html(new Date().toUTCString() + ": <span data-user=" + tweet.user + ">@" + tweet.user + "</span>: " + tweet.message);
               $tweet.insertAfter($title);
               index++;
             }
@@ -55,6 +55,9 @@
 
         populateAll();
         populateOne('mracus');
+
+        $('span').on('click', function() {populateOne(this.data('user'));});
+        $('button').on('click',function() {populateAll();});
 
       });
 
