@@ -15,8 +15,10 @@
         var populateAll = function() {
           $body.html('');
           clearInterval();
+
           var $title = $("<h1>All Users' Tweets</h1>");
           $title.prependTo($body);
+          
           var index = 0;
           setInterval(function() {
             while(index < streams.home.length){
@@ -33,8 +35,12 @@
         var populateOne = function(user) {
           $body.html('');
           clearInterval();
+
           var $title = $("<h1>" + user + "'s Tweets</h1>");
           $title.prependTo($body);
+          var $button = $("<button>Back to All Users</button>");
+          $button.prependTo($body);
+
           var index = 0;
           setInterval(function() {
             while(index < streams.users[user].length){

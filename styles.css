@@ -1,25 +1,32 @@
-div {
+* {
 	background-color: antiquewhite;
-	border: 2px solid red;
 	border-radius: 5px;
 	font-family: Calibri, Verdana, Serif;
-	font-size: x-large;
-	height: 50px;
-	padding: 10px;
 	text-align: center;
 }
 
+div {
+	border: 2px solid red;
+	font-size: x-large;
+	height: 50px;
+	padding: 10px;
+}
+
 h1 {
-	background-color: antiquewhite;
 	border: 5px solid purple;
-	border-radius: 5px;
-	font-family: Calibri, Verdana, Serif;
 	font-size: xx-large;
 	height: 50px;
 	width: 300px;
 	padding: 10px;
 	margin: 5px;
-	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+button {
+	float: left;
+	border: 3px solid purple;
+	font-size: large;
+	height: 60px;
+	width: 100px;
 }
