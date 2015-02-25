@@ -54,10 +54,9 @@
         };
 
         populateAll();
-        populateOne('mracus');
 
-        $('span').on('click', function() {populateOne(this.data('user'));});
-        $('button').on('click',function() {populateAll();});
+        $('body').on('click', 'button', function() {populateAll();});
+        $('body').on('click', 'span', function() {populateOne($(this).data('user'));});
 
       });
 
